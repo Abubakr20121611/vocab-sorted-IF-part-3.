@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>IELTS Vocabulary Exam</title>
+
+<style>
+
+:root{
+    --bg:#eef3f8;
+    --card:#ffffff;
+    --text:#172033;
+    --muted:#667085;
+    --primary:#2563eb;
+    --border:#e5e7eb;
+    --soft:#f7f9fc;
+    --danger:#dc2626;
+    --success:#16a34a;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:.2s;
+}
+
+body.dark{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --text:#f1f5f9;
+    --muted:#94a3b8;
+    --border:#334155;
+    --soft:#172033;
+}
+
+.container{
+    max-width:900px;
+    width:94%;
+    margin:25px auto;
+}
+
+.card{
+    background:var(--card);
+    padding:28px;
+    border-radius:22px;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+.hidden{
+    display:none!important;
+}
+
+.center{
+    text-align:center;
+}
+
+.brand{
+    text-align:center;
+    color:var(--primary);
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.lesson-row{
+    display:flex;
+    align-items:center;
+    border:2px solid var(--border);
+    border-radius:14px;
+    margin:10px 0;
+    overflow:hidden;
+    background:var(--soft);
+}
+
+.lesson-name{
+    flex:1;
+    padding:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.lesson-name:hover{
+    color:var(--primary);
+}
+
+.lesson-divider{
+    width:2px;
+    align-self:stretch;
+    background:var(--border);
+}
+
+.review-btn{
+    width:65px;
+    padding:17px 0;
+    margin:0;
+    border-radius:0;
+    background:transparent;
+}
+
+.review-btn:hover{
+    background:var(--border);
+}
+
+.telegram{
+    margin-top:20px;
+    text-align:center;
+}
+
+.telegram a{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    text-decoration:none;
+    color:#229ed9;
+    font-weight:bold;
+}
+
+.telegram svg{
+    width:22px;
+    height:22px;
+    fill:#229ed9;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.timer{
+    font-size:28px;
+    font-weight:bold;
+    color:var(--primary);
+    text-align:center;
+    margin:10px 0;
+}
+
+.progress{
+    color:var(--muted);
+    font-weight:bold;
+}
+
+.meaning{
+    padding:18px;
+    border-radius:14px;
+    background:var(--soft);
+    border:1px solid var(--border);
+    font-size:20px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin:18px 0 8px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:14px;
+    border:2px solid var(--border);
+    border-radius:12px;
+    background:var(--card);
+    color:var(--text);
+    font-size:16px;
+    outline:none;
+}
+
+textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+button{
+    border:0;
+    border-radius:12px;
+    padding:13px 18px;
+    margin:5px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.primary{
+    background:var(--primary);
+    color:white;
+}
+
+.secondary{
+    background:#e5e7eb;
+    color:#111827;
+}
+
+body.dark .secondary{
+    background:#334155;
+    color:white;
+}
+
+.result-box{
+    margin-top:20px;
+    padding:20px;
+    border-radius:16px;
+    background:var(--soft);
+    border:1px solid var(--border);
+}
+
+.score{
+    font-size:48px;
+    font-weight:bold;
+    color:var(--primary);
+}
+
+.small{
+    color:var(--muted);
+}
+
+.correct{
+    color:var(--success);
+    font-weight:bold;
+}
+
+.incorrect{
+    color:var(--danger);
+    font-weight:bold;
+}
+
+.grammar-error{
+    margin-top:15px;
+    padding:15px;
+    border-radius:12px;
+    background:#fff1f2;
+    border:1px solid #fecdd3;
+    color:#172033;
+}
+
+body.dark .grammar-error{
+    background:#3f1d25;
+    color:#f1f5f9;
+    border-color:#7f1d1d;
+}
+
+.grammar-item{
+    margin:10px 0;
+    padding:12px;
+    border-radius:10px;
+    background:white;
+    border:1px solid #e5e7eb;
+}
+
+body.dark .grammar-item{
+    background:#1e293b;
+    border-color:#475569;
+}
+
+.wrong-text{
+    color:#dc2626;
+    font-weight:bold;
+}
+
+.suggestion{
+    color:#16a34a;
+    font-weight:bold;
+}
+
+.band{
+    font-size:48px;
+    font-weight:bold;
+    color:var(--primary);
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:1000;
+}
+
+.modal-box{
+    width:min(800px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:var(--card);
+    color:var(--text);
+    border-radius:20px;
+    padding:25px;
+}
+
+.review-item{
+    padding:13px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.review-en{
+    font-weight:bold;
+}
+
+.review-uz{
+    color:var(--muted);
+    margin-top:4px;
+}
+
+.theme-btn{
+    font-size:20px;
+    padding:8px 12px;
+    margin:0;
+}
+
+.exam-mode{
+    overflow:auto;
+}
+
+@media(max-width:600px){
+
+    .container{
+        width:96%;
+        margin:12px auto;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    button{
+        width:100%;
+        margin:5px 0;
+    }
+
+    .theme-btn{
+        width:auto;
+    }
+
+    .score{
+        font-size:40px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- LESSON PAGE -->
+
+<div id="lessonPage" class="card">
+
+    <div class="topbar">
+
+        <div class="brand">
+            👤 Abubakr Rabbimov
+        </div>
+
+        <button
+            class="secondary theme-btn"
+            onclick="toggleTheme()"
+        >
+            🌙
+        </button>
+
+    </div>
+
+    <h1 class="center">
+        📚 IELTS Vocabulary Exam
+    </h1>
+
+    <p class="center small">
+        Choose a lesson
+    </p>
+
+    <div id="lessonList"></div>
+
+    <div class="telegram">
+
+        <a
+            href="https://t.me/IeltsmaterialsbyAbubakr"
+            target="_blank"
+            rel="noopener"
+        >
+
+            <svg viewBox="0 0 24 24">
+                <path d="M21.8 3.2 18.7 20c-.2 1.2-.9 1.5-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6.1 13.8 1.2 12c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.7.2 1.3.2z"/>
+            </svg>
+
+            @IeltsmaterialsbyAbubakr
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- EXAM PAGE -->
+
+<div id="examPage" class="card hidden">
+
+    <div class="topbar">
+
+        <div>
+            <b id="examLesson"></b>
+        </div>
+
+        <button
+            class="theme-btn secondary"
+            onclick="toggleTheme()"
+        >
+            🌙
+        </button>
+
+    </div>
+
+    <div class="center">
+
+        <p id="questionNumber" class="progress"></p>
+
+        <div id="timer" class="timer">
+            15:00
+        </div>
+
+    </div>
+
+    <div
+        id="meaning"
+        class="meaning"
+    ></div>
+
+    <label>
+        English vocabulary:
+    </label>
+
+    <input
+        id="vocabAnswer"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Type the English word or phrase..."
+    >
+
+    <label>
+        Make an English sentence:
+    </label>
+
+    <textarea
+        id="sentenceAnswer"
+        placeholder="Write a sentence using the vocabulary..."
+    ></textarea>
+
+    <div class="center">
+
+        <button
+            id="checkButton"
+            class="primary"
+            onclick="checkCurrentQuestion()"
+        >
+            ✅ CHECK
+        </button>
+
+        <button
+            id="nextButton"
+            class="secondary hidden"
+            onclick="nextQuestion()"
+        >
+            ➡️ NEXT
+        </button>
+
+    </div>
+
+    <div
+        id="questionFeedback"
+        class="result-box hidden"
+    ></div>
+
+</div>
+
+
+<!-- RESULT PAGE -->
+
+<div id="resultPage" class="card hidden">
+
+    <div class="brand">
+        👤 Abubakr Rabbimov
+    </div>
+
+    <h1 class="center">
+        🏆 Exam Result
+    </h1>
+
+    <div class="center">
+
+        <div
+            id="totalScore"
+            class="score"
+        >
+            0/30
+        </div>
+
+        <p id="percentage"></p>
+
+    </div>
+
+    <div class="result-box">
+
+        <p>
+            <b>Lesson:</b>
+            <span id="resultLesson"></span>
+        </p>
+
+        <p>
+            <b>Vocabulary score:</b>
+            <span id="vocabScore"></span>
+        </p>
+
+        <p>
+            <b>Sentence score:</b>
+            <span id="sentenceScore"></span>
+        </p>
+
+        <p>
+            <b>Total:</b>
+            30 points
+        </p>
+
+    </div>
+
+    <div class="center">
+
+        <button
+            class="primary"
+            onclick="newExam()"
+        >
+            🔄 NEW EXAM
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- REVIEW MODAL -->
+
+<div
+    id="reviewModal"
+    class="modal hidden"
+    onclick="closeReview(event)"
+>
+
+    <div
+        class="modal-box"
+        onclick="event.stopPropagation()"
+    >
+
+        <div class="topbar">
+
+            <h2 id="reviewTitle">
+                📖 Review
+            </h2>
+
+            <button
+                class="secondary"
+                onclick="closeReview()"
+            >
+                ✕ CLOSE
+            </button>
+
+        </div>
+
+        <div id="reviewContent"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   📚 LESSONS 21–30
+===================================================== */
+
+const lessons = {
+
+"Lesson 21":[
+["Experience","tajriba, boshdan kechirmoq"],
+["Tradition","an’ana"],
+["Hospitality","mehmondo‘stlik"],
+["Influence","ta’sir ko‘rsatmoq"],
+["Fusion","aralashma, uyg‘unlik"],
+["Open-minded","ochiq fikrli"],
+["Respect","hurmat qilmoq"],
+["Cuisine","oshpazlik, taomlar"],
+["Culture","madaniyat"],
+["Discover","kashf qilmoq, bilib olmoq"],
+["Cappuccino","kapuchino"],
+["Oat milk","suli suti"],
+["Gluten-free","glutensiz"],
+["Pastries","pishiriqlar"],
+["Almond","bodom"],
+["Croissant","kruassan"],
+["Muffin","keks"],
+["Mobile payment","mobil to‘lov"],
+["To go","olib ketish uchun"],
+["Smells amazing","ajoyib hid kelmoqda"],
+["depend on","ga bog‘liq bo‘lmoq"],
+["inform sb about","kimgadir ... haqida xabar bermoq"],
+["refer to","ga ishora qilmoq; tilga olmoq"],
+["work as","sifatida ishlamoq"],
+["work for","uchun ishlamoq"]
+],
+
+"Lesson 22":[
+["Poaching","noqonuniy ovchilik"],
+["Endangered","yo‘qolib ketish xavfida"],
+["Survival","omon qolish"],
+["Illegal","noqonuniy"],
+["Species","tur"],
+["Ecosystem","ekotizim"],
+["Awareness","xabardorlik"],
+["Horn","shox"],
+["Balanced","muvozanatli"],
+["Behavior","xulq-atvor"],
+["Seasonal","mavsumiy"],
+["Special","maxsus taklif"],
+["Featuring","taqdim etayotgan"],
+["Tempting","vasvasaga soluvchi"],
+["Spiced","ziravorli"],
+["Chilly","salqin"],
+["Selection","tanlov"],
+["Cinnamon roll","dolchinli bulochka"],
+["Counter","kassaga yaqin joy"],
+["Looking forward to","sabrsizlik bilan kutmoq"],
+["a kind of","bir turi"],
+["addicted to","ga qaram bo‘lmoq"],
+["allergic to","ga allergiyasi bor"],
+["covered in/with","bilan qoplangan"],
+["pleased with","dan mamnun"]
+],
+
+"Lesson 23":[
+["Generation gap","avlodlar o‘rtasidagi farq"],
+["Misunderstanding","tushunmovchilik"],
+["Tradition","an’ana"],
+["Value","qadriyat"],
+["Technology","texnologiya"],
+["Connect","bog‘lanmoq"],
+["Support","qo‘llab-quvvatlamoq"],
+["Patient","sabrli"],
+["Express","ifodalamoq"],
+["Relationship","munosabat"],
+["Assignment","topshiriq"],
+["Summarize","qisqacha bayon qilmoq"],
+["Chapter","bob"],
+["Timeline","vaqt jadvali"],
+["Argument","dalil"],
+["Researching","tadqiqot qilmoq"],
+["Recommended","tavsiya etilgan"],
+["Expectations","kutgan natijalar"],
+["Particular","talabchan, aniq"],
+["Honest effort","halol harakat"],
+["combine sth with","biror narsani ... bilan birlashtirmoq"],
+["complain (to sb) about","kimgadir ... haqida shikoyat qilmoq"],
+["die from/of","...dan vafot etmoq"],
+["fight against","ga qarshi kurashmoq"],
+["recover from","dan tuzalmoq"]
+],
+
+"Lesson 24":[
+["Experience","tajriba"],
+["Volunteer","ko‘ngilli"],
+["Culture","madaniyat"],
+["Prepare","tayyorlamoq"],
+["Rush","shoshilmoq"],
+["Regret","afsuslanmoq"],
+["Support","qo‘llab-quvvatlamoq"],
+["Educational path","ta’lim yo‘li"],
+["Plan","reja"],
+["Decision","qaror"],
+["Thesis","diplom ishi"],
+["Outline","reja, tuzilma"],
+["Sustainable","barqaror"],
+["Architecture","arxitektura"],
+["Narrowing the scope","mavzuni toraytirish"],
+["Analysis","tahlil"],
+["Case study","amaliy misol, tadqiqot"],
+["Credible","ishonchli"],
+["Cited","keltirilgan, manba sifatida"],
+["Draft","qora nusxa"],
+["smell of","... hidi"],
+["a cure for","... uchun davo"],
+["a recipe for","... uchun retsept"],
+["amazed at/by","...dan hayratlangan"],
+["disappointed with","...dan hafsalasi pir bo‘lgan"]
+],
+
+"Lesson 25":[
+["Opportunity","imkoniyat"],
+["Leadership","yetakchilik"],
+["Promotion","lavozim ko‘tarilishi"],
+["Frustration","hafsalasi pir bo‘lishi"],
+["Equality","tenglik"],
+["Gender","jins"],
+["Disappear","yo‘qolmoq"],
+["Progress","taraqqiyot"],
+["Include","qo‘shmoq"],
+["Respect","hurmat"],
+["Projections","bashoratlar"],
+["Initiative","tashabbus"],
+["Rehearse","mashq qilmoq"],
+["Talking points","asosiy fikrlar"],
+["Visualization","tasvirlash"],
+["Concise","lo‘nda, aniq"],
+["Run-through","sinovchi mashq"],
+["Cottage","qishloq uyi"],
+["Deckchairs","dam olish uchun buklanadigan stullar"],
+["Presume","dalilsiz taxmin qilmoq"],
+["familiar with","bilan tanish"],
+["involved in","da ishtirok etmoq"],
+["similar to","ga o‘xshash"],
+["change sth from sth into","...dan ...ga aylantirmoq"],
+["describe sth as","... deb ta’riflamoq"]
+],
+
+"Lesson 26":[
+["Valuable","qimmatli"],
+["Understood","tushunilgan"],
+["Judgment","hukm, tanqid"],
+["Reflect","o‘ylab ko‘rmoq"],
+["Criticize","tanqid qilmoq"],
+["Effort","harakat, urinish"],
+["Uncomfortable","noqulay"],
+["Honest","halol, rostgo‘y"],
+["Supportive","qo‘llab-quvvatlovchi"],
+["Bond","rishta, aloqa"],
+["Revised","qayta ko‘rib chiqilgan"],
+["Agenda","kun tartibi"],
+["Strategy meeting","strategik yig‘ilish"],
+["Segment","bo‘lim, qism"],
+["Digital transformation","raqamli o‘zgarish"],
+["Implementation plan","amalga oshirish rejasi"],
+["Compiled","to‘plangan"],
+["Visual report","grafik hisobot"],
+["Collaborate","hamkorlik qilmoq"],
+["Input","fikr, hissa"],
+["explain sth to","biror narsani kimgadir tushuntirmoq"],
+["remind sb of","kimgadir ...ni eslatmoq"],
+["remove sth from","biror narsani ...dan olib tashlamoq"],
+["an influence on","...ga ta’sir"],
+["a picture of","...ning rasmi"]
+],
+
+"Lesson 27":[
+["Precision","aniqlik"],
+["Misunderstood","noto‘g‘ri tushunilgan"],
+["Researcher","tadqiqotchi"],
+["Conclusion","xulosa"],
+["Credibility","ishonchlilik"],
+["Peer","hamkasb, retsenzent"],
+["Findings","topilmalar, natijalar"],
+["Persuasively","ishontiruvchi tarzda"],
+["Academic","ilmiy, akademik"],
+["Emphasize","ta’kidlash"],
+["Report","xabar bermoq, hisobot"],
+["Stolen","o‘g‘irlangan"],
+["Incident","hodisa"],
+["Shattered","chilparchin bo‘lgan"],
+["Belongings","shaxsiy buyumlar"],
+["Detailed statement","batafsil bayonot"],
+["File a report","ariza topshirmoq"],
+["Investigation","tergov"],
+["CCTV (surveillance)","kuzatuv kamerasi"],
+["Assist","yordam bermoq"],
+["afraid of","dan qo‘rqadigan"],
+["aware of","dan xabardor"],
+["enthusiastic about","ga juda qiziqadigan, ishtiyoqmand"],
+["serious about","ga jiddiy qaraydigan"],
+["short of","yetishmaydigan"]
+],
+
+"Lesson 28":[
+["Infrastructure","infratuzilma"],
+["Heritage","meros"],
+["Sustainable","barqaror"],
+["Pollution","ifloslanish"],
+["Economic gain","iqtisodiy foyda"],
+["Tolerance","bag‘rikenglik"],
+["Vulnerable","zaif, mo‘rt"],
+["Exchange","almashinuv"],
+["Pressure","bosim"],
+["Cultural protection","madaniy merosni himoya qilish"],
+["Footage","video yozuv"],
+["Accusation","ayblov"],
+["Admit","tan olmoq"],
+["Desperate","umidsiz, qattiq ehtiyojda"],
+["Motive","sabab, motiv"],
+["Offense","qonunbuzarlik"],
+["Acting alone","yakka harakat qilgan"],
+["Cooperation","hamkorlik"],
+["Responsibility","mas’uliyat"],
+["Court date","sud sanasi"],
+["escape from","dan qochmoq"],
+["prevent sb from","kimnidir ...dan to‘smoq"],
+["save sth from","biror narsani ...dan saqlamoq"],
+["think about","haqida o‘ylamoq"],
+["worry about","haqida xavotir olmoq"]
+],
+
+"Lesson 29":[
+["Equality","tenglik"],
+["Movement","harakat"],
+["Opportunities","imkoniyatlar"],
+["Confidence","ishonch"],
+["Respect","hurmat"],
+["Traditions","an’analar"],
+["Promote","rivojlantirmoq, ilgari surmoq"],
+["Role model","namuna"],
+["Potential","salohiyat"],
+["Leader","rahbar"],
+["Locate","topmoq"],
+["Escalator","eskalator"],
+["Promotion","chegirma, aksiya"],
+["Directory","ko‘rsatkich, katalog"],
+["Upgrade","yangilash, yaxshilash"],
+["Exclusive","maxsus"],
+["Atrium","markaziy zal"],
+["Electronics","elektronika"],
+["Tech expo","texnologiya ko‘rgazmasi"],
+["Timing","vaqtni to‘g‘ri tanlash"],
+["damage to","...ga zarar"],
+["an increase in","...da o‘sish"],
+["ashamed of","...dan uyalgan"],
+["embarrassed about","...dan xijolat bo‘lgan"],
+["frightened of","...dan qo‘rqadigan"]
+],
+
+"Lesson 30":[
+["Cultivated","yetishtirilgan"],
+["Biotechnology","biotexnologiya"],
+["Occurring","yuzaga keladigan"],
+["Purity","poklik"],
+["Thrive","rivojlanmoq, gullab-yashnamoq"],
+["Pruning","butash"],
+["Grace","nafosat"],
+["Apology","kechirim"],
+["Emotional well-being","ruhiy salomatlik"],
+["Attention","e’tibor"],
+["Formal","rasmiy"],
+["Suitable","mos"],
+["Wrinkle-resistant","burishmaydigan"],
+["Recommend","tavsiya qilmoq"],
+["Tailored","bichilgan, moslashtirilgan"],
+["Breathable","nafas oladigan (mato)"],
+["Crease","bukilmoq, burishmoq"],
+["Durable","mustahkam"],
+["Dry-clean only","faqat kimyoviy tozalash"],
+["Fitting room","kiyim sinash xonasi"],
+["happy about/with","...dan xursand, mamnun"],
+["nervous about","...dan hayajonlangan, asabiylashgan"],
+["scared of","...dan qo‘rqadigan"],
+["sorry about/for","...dan afsuslangan"],
+["surprised at/by","...dan hayratlangan"]
+]
+
+};
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+const QUESTION_COUNT = 15;
+const EXAM_TIME = 15 * 60;
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let selectedLesson = "";
+let examQuestions = [];
+let currentQuestion = 0;
+
+let totalScore = 0;
+let vocabScore = 0;
+let sentenceScore = 0;
+
+let answered = false;
+
+let timer = null;
+let timeLeft = EXAM_TIME;
+
+let examActive = false;
+let antiCheatLocked = false;
+
+
+/* =====================================================
+   BUILD LESSONS
+===================================================== */
+
+function buildLessons(){
+
+    const list =
+        document.getElementById("lessonList");
+
+    list.innerHTML = "";
+
+    Object.keys(lessons).forEach(lesson => {
+
+        const row =
+            document.createElement("div");
+
+        row.className =
+            "lesson-row";
+
+        const name =
+            document.createElement("div");
+
+        name.className =
+            "lesson-name";
+
+        name.textContent =
+            lesson;
+
+        name.onclick =
+            () => startExam(lesson);
+
+
+        const divider =
+            document.createElement("div");
+
+        divider.className =
+            "lesson-divider";
+
+
+        const review =
+            document.createElement("button");
+
+        review.className =
+            "review-btn";
+
+        review.textContent =
+            "📖";
+
+        review.title =
+            "Review vocabulary";
+
+        review.onclick =
+            (event) => {
+
+                event.stopPropagation();
+
+                openReview(lesson);
+
+            };
+
+
+        row.appendChild(name);
+        row.appendChild(divider);
+        row.appendChild(review);
+
+        list.appendChild(row);
+
+    });
+
+}
+
+
+/* =====================================================
+   START EXAM
+===================================================== */
+
+function startExam(lesson){
+
+    selectedLesson = lesson;
+
+    examQuestions =
+        [...lessons[lesson]]
+        .sort(() => Math.random() - 0.5)
+        .slice(0,QUESTION_COUNT);
+
+    currentQuestion = 0;
+
+    totalScore = 0;
+    vocabScore = 0;
+    sentenceScore = 0;
+
+    answered = false;
+    antiCheatLocked = false;
+
+    timeLeft = EXAM_TIME;
+    examActive = true;
+
+    document.body.classList.add(
+        "exam-mode"
+    );
+
+    document
+        .getElementById("lessonPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("resultPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("examPage")
+        .classList
+        .remove("hidden");
+
+    document
+        .getElementById("examLesson")
+        .textContent =
+        selectedLesson;
+
+    showQuestion();
+
+    updateTimer();
+
+    startTimer();
+
+}
+
+
+/* =====================================================
+   SHOW QUESTION
+===================================================== */
+
+function showQuestion(){
+
+    const item =
+        examQuestions[currentQuestion];
+
+    answered = false;
+
+    document
+        .getElementById("questionNumber")
+        .textContent =
+        `Question ${currentQuestion + 1} / ${QUESTION_COUNT}`;
+
+    document
+        .getElementById("meaning")
+        .textContent =
+        "🇺🇿 " + item[1];
+
+    document
+        .getElementById("vocabAnswer")
+        .value = "";
+
+    document
+        .getElementById("sentenceAnswer")
+        .value = "";
+
+    document
+        .getElementById("questionFeedback")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("questionFeedback")
+        .innerHTML = "";
+
+    document
+        .getElementById("checkButton")
+        .classList
+        .remove("hidden");
+
+    document
+        .getElementById("nextButton")
+        .classList
+        .add("hidden");
+
+}
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+function updateTimer(){
+
+    const minutes =
+        Math.floor(timeLeft / 60);
+
+    const seconds =
+        timeLeft % 60;
+
+    document
+        .getElementById("timer")
+        .textContent =
+        `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+
+}
+
+
+function startTimer(){
+
+    clearInterval(timer);
+
+    timer =
+        setInterval(() => {
+
+            if(!examActive){
+
+                clearInterval(timer);
+
+                return;
+
+            }
+
+            timeLeft--;
+
+            updateTimer();
+
+            if(timeLeft <= 0){
+
+                clearInterval(timer);
+
+                finishExam(
+                    "⏰ Time is over!"
+                );
+
+            }
+
+        },1000);
+
+}
+
+
+/* =====================================================
+   NORMALIZE
+===================================================== */
+
+function normalize(text){
+
+    return String(text)
+        .toLowerCase()
+        .trim()
+        .replace(/[.,!?;:'"()]/g,"")
+        .replace(/\s+/g," ");
+
+}
+
+
+/* =====================================================
+   VOCAB CHECK
+===================================================== */
+
+function checkVocabulary(
+    answer,
+    correct
+){
+
+    return normalize(answer) ===
+           normalize(correct);
+
+}
+
+
+/* =====================================================
+   LANGUAGE TOOL
+===================================================== */
+
+async function grammarCheck(sentence){
+
+    const body =
+        new URLSearchParams();
+
+    body.append(
+        "text",
+        sentence
+    );
+
+    body.append(
+        "language",
+        "en-US"
+    );
+
+    const response =
+        await fetch(
+            "https://api.languagetool.org/v2/check",
+            {
+                method:"POST",
+
+                headers:{
+                    "Content-Type":
+                        "application/x-www-form-urlencoded"
+                },
+
+                body:
+                    body.toString()
+            }
+        );
+
+    if(!response.ok){
+
+        throw new Error(
+            "LanguageTool is unavailable."
+        );
+
+    }
+
+    return await response.json();
+
+}
+
+
+/* =====================================================
+   GET GRAMMAR DETAILS
+===================================================== */
+
+function createGrammarDetails(
+    sentence,
+    matches
+){
+
+    if(
+        !matches ||
+        matches.length === 0
+    ){
+
+        return "";
+
+    }
+
+    let html = `
+
+        <div class="grammar-error">
+
+            <h3>
+                📝 LanguageTool corrections
+            </h3>
+
+            <p>
+                Found
+                <b>${matches.length}</b>
+                issue(s):
+            </p>
+
+    `;
+
+
+    matches.forEach(
+        (match,index) => {
+
+            const wrongText =
+                sentence.substring(
+                    match.offset,
+                    match.offset +
+                    match.length
+                );
+
+
+            let suggestions =
+                "No suggestion";
+
+
+            if(
+                Array.isArray(
+                    match.replacements
+                ) &&
+                match.replacements.length
+            ){
+
+                suggestions =
+                    match.replacements
+                        .slice(0,5)
+                        .map(
+                            item =>
+                                item.value
+                        )
+                        .join(", ");
+
+            }
+
+
+            html += `
+
+                <div class="grammar-item">
+
+                    <b>
+                        ${index + 1}.
+                        ${escapeHTML(
+                            match.message ||
+                            "Language error"
+                        )}
+                    </b>
+
+                    <br><br>
+
+                    ❌ Your text:
+                    <span class="wrong-text">
+                        ${escapeHTML(
+                            wrongText || "—"
+                        )}
+                    </span>
+
+                    <br><br>
+
+                    ✅ Suggested:
+                    <span class="suggestion">
+                        ${escapeHTML(
+                            suggestions
+                        )}
+                    </span>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+        </div>
+    `;
+
+    return html;
+
+}
+
+
+/* =====================================================
+   CHECK CURRENT QUESTION
+===================================================== */
+
+async function checkCurrentQuestion(){
+
+    if(
+        !examActive ||
+        antiCheatLocked ||
+        answered
+    ){
+
+        return;
+
+    }
+
+
+    const item =
+        examQuestions[currentQuestion];
+
+    const correctWord =
+        item[0];
+
+
+    const vocabAnswer =
+        document
+            .getElementById(
+                "vocabAnswer"
+            )
+            .value
+            .trim();
+
+
+    const sentence =
+        document
+            .getElementById(
+                "sentenceAnswer"
+            )
+            .value
+            .trim();
+
+
+    if(!vocabAnswer){
+
+        alert(
+            "Please enter the English vocabulary."
+        );
+
+        return;
+
+    }
+
+
+    if(!sentence){
+
+        alert(
+            "Please write an English sentence."
+        );
+
+        return;
+
+    }
+
+
+    const feedback =
+        document
+            .getElementById(
+                "questionFeedback"
+            );
+
+
+    feedback
+        .classList
+        .remove("hidden");
+
+
+    feedback.innerHTML =
+        "⏳ Checking your answer...";
+
+
+    const vocabCorrect =
+        checkVocabulary(
+            vocabAnswer,
+            correctWord
+        );
+
+
+    let sentenceCorrect = false;
+    let grammarMatches = [];
+
+
+    try{
+
+        const languageData =
+            await grammarCheck(
+                sentence
+            );
+
+
+        grammarMatches =
+            Array.isArray(
+                languageData.matches
+            )
+                ? languageData.matches
+                : [];
+
+
+        const normalizedSentence =
+            normalize(sentence);
+
+        const normalizedWord =
+            normalize(correctWord);
+
+
+        const wordIncluded =
+            normalizedSentence.includes(
+                normalizedWord
+            );
+
+
+        sentenceCorrect =
+            wordIncluded &&
+            grammarMatches.length === 0;
+
+
+    }catch(error){
+
+        feedback.innerHTML = `
+
+            <p class="incorrect">
+                ❌ LanguageTool tekshiruvi ishlamadi.
+            </p>
+
+            <p>
+                ${escapeHTML(
+                    error.message
+                )}
+            </p>
+
+            <p>
+                Internet connectionni tekshiring
+                va qayta urinib ko‘ring.
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    answered = true;
+
+
+    if(vocabCorrect){
+
+        vocabScore++;
+
+    }
+
+
+    if(sentenceCorrect){
+
+        sentenceScore++;
+
+    }
+
+
+    totalScore =
+        vocabScore +
+        sentenceScore;
+
+
+    let html = "";
+
+
+    /* VOCAB RESULT */
+
+    if(vocabCorrect){
+
+        html += `
+
+            <p class="correct">
+                ✅ Vocabulary: +1 point
+            </p>
+
+        `;
+
+    }else{
+
+        html += `
+
+            <p class="incorrect">
+                ❌ Vocabulary: 0 points
+            </p>
+
+            <p>
+                Correct answer:
+                <b>
+                    ${escapeHTML(
+                        correctWord
+                    )}
+                </b>
+            </p>
+
+        `;
+
+    }
+
+
+    /* SENTENCE RESULT */
+
+    if(sentenceCorrect){
+
+        html += `
+
+            <p class="correct">
+                ✅ Sentence: +1 point
+            </p>
+
+            <p class="correct">
+                🎉 No LanguageTool errors.
+            </p>
+
+        `;
+
+    }else{
+
+        html += `
+
+            <p class="incorrect">
+                ❌ Sentence: 0 points
+            </p>
+
+        `;
+
+
+        if(
+            !normalize(sentence)
+                .includes(
+                    normalize(correctWord)
+                )
+        ){
+
+            html += `
+
+                <p class="incorrect">
+                    ⚠️ Your sentence does not
+                    contain the required vocabulary.
+                </p>
+
+            `;
+
+        }
+
+
+        /* SHOW ACTUAL LANGUAGE TOOL ERRORS */
+
+        html +=
+            createGrammarDetails(
+                sentence,
+                grammarMatches
+            );
+
+    }
+
+
+    html += `
+
+        <hr>
+
+        <p>
+            <b>Current score:</b>
+            ${totalScore}
+            /
+            ${QUESTION_COUNT * 2}
+        </p>
+
+    `;
+
+
+    feedback.innerHTML =
+        html;
+
+
+    document
+        .getElementById("checkButton")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("nextButton")
+        .classList
+        .remove("hidden");
+
+}
+
+
+/* =====================================================
+   NEXT QUESTION
+===================================================== */
+
+function nextQuestion(){
+
+    if(!examActive){
+        return;
+    }
+
+    if(!answered){
+
+        alert(
+            "First check your answer."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        currentQuestion <
+        examQuestions.length - 1
+    ){
+
+        currentQuestion++;
+
+        showQuestion();
+
+    }else{
+
+        finishExam(
+            "🎉 Exam completed!"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   FINISH
+===================================================== */
+
+function finishExam(message){
+
+    if(!examActive){
+        return;
+    }
+
+    examActive = false;
+
+    clearInterval(timer);
+
+    document.body.classList.remove(
+        "exam-mode"
+    );
+
+
+    document
+        .getElementById("examPage")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("resultPage")
+        .classList
+        .remove("hidden");
+
+
+    const maxScore =
+        QUESTION_COUNT * 2;
+
+
+    const percentage =
+        Math.round(
+            (totalScore /
+             maxScore) *
+             100
+        );
+
+
+    document
+        .getElementById("totalScore")
+        .textContent =
+        `${totalScore}/${maxScore}`;
+
+
+    document
+        .getElementById("percentage")
+        .textContent =
+        `${percentage}%`;
+
+
+    document
+        .getElementById("resultLesson")
+        .textContent =
+        selectedLesson;
+
+
+    document
+        .getElementById("vocabScore")
+        .textContent =
+        `${vocabScore}/${QUESTION_COUNT}`;
+
+
+    document
+        .getElementById("sentenceScore")
+        .textContent =
+        `${sentenceScore}/${QUESTION_COUNT}`;
+
+}
+
+
+/* =====================================================
+   NEW EXAM
+===================================================== */
+
+function newExam(){
+
+    clearInterval(timer);
+
+    examActive = false;
+
+    antiCheatLocked = false;
+
+    document.body.classList.remove(
+        "exam-mode"
+    );
+
+
+    document
+        .getElementById("resultPage")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("examPage")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("lessonPage")
+        .classList
+        .remove("hidden");
+
+}
+
+
+/* =====================================================
+   REVIEW
+===================================================== */
+
+function openReview(lesson){
+
+    const modal =
+        document.getElementById(
+            "reviewModal"
+        );
+
+    const title =
+        document.getElementById(
+            "reviewTitle"
+        );
+
+    const content =
+        document.getElementById(
+            "reviewContent"
+        );
+
+
+    title.textContent =
+        "📖 " + lesson;
+
+
+    content.innerHTML = "";
+
+
+    lessons[lesson].forEach(
+        (item,index) => {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+            div.className =
+                "review-item";
+
+
+            div.innerHTML = `
+
+                <div class="review-en">
+                    ${index + 1}.
+                    ${escapeHTML(item[0])}
+                </div>
+
+                <div class="review-uz">
+                    ${escapeHTML(item[1])}
+                </div>
+
+            `;
+
+
+            content.appendChild(div);
+
+        }
+    );
+
+
+    modal.classList.remove(
+        "hidden"
+    );
+
+}
+
+
+function closeReview(event){
+
+    if(
+        event &&
+        event.target !==
+        document.getElementById(
+            "reviewModal"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    document
+        .getElementById(
+            "reviewModal"
+        )
+        .classList
+        .add("hidden");
+
+}
+
+
+/* =====================================================
+   DARK / LIGHT
+===================================================== */
+
+function toggleTheme(){
+
+    document
+        .body
+        .classList
+        .toggle("dark");
+
+
+    localStorage.setItem(
+        "vocabTheme",
+
+        document.body.classList.contains(
+            "dark"
+        )
+            ? "dark"
+            : "light"
+    );
+
+}
+
+
+function loadTheme(){
+
+    if(
+        localStorage.getItem(
+            "vocabTheme"
+        ) === "dark"
+    ){
+
+        document
+            .body
+            .classList
+            .add("dark");
+
+    }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   ANTI-CHEAT
+===================================================== */
+
+function cancelForCheating(){
+
+    if(
+        !examActive ||
+        antiCheatLocked
+    ){
+
+        return;
+
+    }
+
+
+    antiCheatLocked = true;
+    examActive = false;
+
+    clearInterval(timer);
+
+
+    document.body.classList.remove(
+        "exam-mode"
+    );
+
+
+    alert(
+        "❌ EXAM CANCELLED!\n\n" +
+        "The page lost focus or visibility."
+    );
+
+
+    document
+        .getElementById("examPage")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("resultPage")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("lessonPage")
+        .classList
+        .remove("hidden");
+
+}
+
+
+/* Visibility */
+
+document.addEventListener(
+    "visibilitychange",
+    () => {
+
+        if(
+            document.hidden &&
+            examActive
+        ){
+
+            cancelForCheating();
+
+        }
+
+    }
+);
+
+
+/* Blur */
+
+window.addEventListener(
+    "blur",
+    () => {
+
+        if(examActive){
+
+            setTimeout(() => {
+
+                if(
+                    examActive &&
+                    !document.hasFocus()
+                ){
+
+                    cancelForCheating();
+
+                }
+
+            },150);
+
+        }
+
+    }
+);
+
+
+/* Page hide */
+
+window.addEventListener(
+    "pagehide",
+    () => {
+
+        if(examActive){
+
+            cancelForCheating();
+
+        }
+
+    }
+);
+
+
+/* Orientation */
+
+window.addEventListener(
+    "orientationchange",
+    () => {
+
+        if(examActive){
+
+            cancelForCheating();
+
+        }
+
+    }
+);
+
+
+/* Periodic check */
+
+setInterval(() => {
+
+    if(
+        examActive &&
+        (
+            document.hidden ||
+            !document.hasFocus()
+        )
+    ){
+
+        cancelForCheating();
+
+    }
+
+},1000);
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+buildLessons();
+
+loadTheme();
+
+</script>
+
+</body>
+</html>
